@@ -1,0 +1,275 @@
+" File: .vimrc
+" Author: Evan Palmer
+" Adapted from github.com/jez/vim-as-an-ide
+
+" Description of remappings
+" jj = escape
+" <leader> = ,
+" ,f = nerdtree
+" ,b = current tags and jump
+" ,tf = tern refs
+" ,tr = tern rename
+" ,jf = javascript format
+" Control - P -- fuzzy search
+" Control - B -- search buffers
+" Control - F -- search files
+
+set nocompatible
+
+filetype off
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'gmarik/Vundle.vim'
+
+" ----- Making Vim look good ------------------------------------------
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'bling/vim-airline'
+"Plugin 'tomasr/molokai'
+
+" ----- Nerdtree Tabs And CtrlP ---------------------------------------
+Plugin 'scrooloose/nerdtree'
+Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'kien/ctrlp.vim'
+Plugin 'Valloric/YouCompleteMe'
+"Plugin 'justinmk/vim-sneak'
+Plugin 'scrooloose/nerdcommenter'
+
+" ----- Syntax Plugins ------------------------------------------------
+Plugin 'scrooloose/syntastic'
+"Plugin 'Shutnik/jshint2.vim'
+
+" ----- Vim tags related plugins --------------------------------------
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-easytags'
+Plugin 'majutsushi/tagbar'
+Plugin 'marijnh/tern_for_vim'
+
+" ----- Working with Git ----------------------------------------------
+Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-sensible'
+
+" ----- Other text editing features -----------------------------------
+Plugin 'Raimondi/delimitMate'
+" Highlight and strip trailing whitespace
+Plugin 'ntpeters/vim-better-whitespace'
+
+" ----- man pages, tmux -----------------------------------------------
+Plugin 'christoomey/vim-tmux-navigator'
+
+" ----- Syntax plugins ------------------------------------------------
+Plugin 'sheerun/vim-polyglot'
+Plugin 'hdima/python-syntax'
+Plugin 'octol/vim-cpp-enhanced-highlight'
+Plugin 'elzr/vim-json'
+Plugin 'pangloss/vim-javascript'
+Plugin 'jelera/vim-javascript-syntax'
+Plugin 'hail2u/vim-css3-syntax'
+Plugin 'maksimr/vim-jsbeautify'
+Plugin 'einars/js-beautify'
+" Align CSV files at commas, align Markdown tables, and more
+Plugin 'godlygeek/tabular'
+" Automaticall insert the closing HTML tag
+Plugin 'HTML-AutoCloseTag'
+
+
+call vundle#end()
+
+filetype plugin indent on
+let g:airline_powerline_fonts = 1
+
+" --- General settings ---
+set backspace=indent,eol,start
+set autoread
+set hidden
+set ruler
+set number
+set showcmd
+set tabstop=4 softtabstop=4 expandtab shiftwidth=4
+set smarttab
+set relativenumber
+set ttyfast
+set foldlevelstart=99
+
+" Search indenting things
+set hlsearch
+set incsearch
+set number
+set breakindent
+set guifont=Menlo\ For\ Powerline
+set nobackup
+set noswapfile
+syntax on
+
+" set , as mapleader
+let mapleader = ","
+inoremap jj <Esc>
+inoremap jk <Esc>
+nnoremap \ }
+nnoremap ; :
+"inoremap <Esc> <Nop>
+
+" map <leader>q and <leader>w to buffer prev/next buffer
+noremap <leader>q :bp<CR>
+noremap <leader>w :bn<CR>
+
+set mouse=a
+
+" ----- Plugin-Specific Settings --------------------------------------
+
+"----- js-beautify settings -------------
+
+autocmd FileType javascript noremap <buffer> <leader>jf :call JsBeautify()<cr>
+" for html
+autocmd FileType html noremap <buffer> <leader>jf :call HtmlBeautify()<cr>
+" for css or scss
+autocmd FileType css noremap <buffer> <leader>jf :call CSSBeautify()<cr>
+
+"----- youcompleteme settings -----------
+
+"let g:ycm_key_list_select_completion = ['<TAB>']
+"let g:ycm_key_list_previous_completion = ['<S-TAB>']
+
+
+" ----- ctrlp settings -------------------
+
+" First set up patterns to ignore
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+let g:ctrlp_map = '<C-p>'
+" Open CTRL+P to search MRU (most recently used), files and buffers
+let g:ctrlp_cmd = 'CtrlPMixed'
+let g:ctrlp_working_path_mode = ''
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+" Make CTRL+P only look for filenames by default
+let g:ctrlp_by_filename = '1'
+
+""""""  CTRL+P Mappings """"""
+" Make CTRL+B open buffers
+nnoremap <C-b> :CtrlPBuffer<CR>
+" Make CTRL+F open Most Recently Used files
+nnoremap <C-f> :CtrlPMRU<CR>
+
+" ----- Tern_for_vim ---------------------
+
+let tern_show_signature_in_pum = 1
+
+nnoremap <silent> <leader>td :TernDef<CR>
+" Find all refs for variable under cursor
+nnoremap <silent> <leader>tf :TernRefs<CR>
+" Smart variable rename
+nnoremap <silent> <leader>tr :TernRename<CR>
+" Documentation lookup
+nnoremap <silent> <leader>tc :TernDoc<CR>
+" Type of current variable
+nnoremap <silent> <leader>tt :TernType<CR>
+
+"----- Vim css3 settings
+augroup VimCSS3Syntax
+  autocmd!
+  autocmd FileType css setlocal iskeyword+=-
+augroup END
+
+" ----- altercation/vim-colors-solarized settings -----
+set background=dark
+
+" Uncomment the next line if your terminal is not configured for solarized
+let g:solarized_termcolors=256
+set t_Co=256
+
+" Set the colorscheme
+colorscheme solarized
+
+
+" ----- bling/vim-airline settings -----
+" Always show statusbar
+set laststatus=2
+set noshowmode
+
+" Fancy arrow symbols, requires a patched font
+" To install a patched font, run over to
+"     https://github.com/abertsch/Menlo-for-Powerline
+" download all the .ttf files, double-click on them and click "Install"
+" Finally, uncomment the next line
+let g:airline_powerline_fonts = 1
+
+" Show PASTE if in paste mode
+let g:airline_detect_paste = 1
+
+" Show airline for tabs too
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
+
+
+" ----- jistr/vim-nerdtree-tabs -----
+" Open/close NERDTree Tabs with \t
+nmap <silent> <leader>f :NERDTreeTabsToggle<CR>
+" To have NERDTree always open on startup
+let g:nerdtree_tabs_open_on_console_startup = 0
+
+
+" ----- scrooloose/syntastic settings -----
+let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_error_symbol = '✘'
+let g:syntastic_style_error_symbol = '✗'
+let g:syntastic_warning_symbol = "▲"
+let g:syntastic_style_warning_symbol = "△"
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 2
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+augroup mySyntastic
+  au!
+  au FileType tex let b:syntastic_mode = "passive"
+augroup END
+
+
+" ----- xolox/vim-easytags settings -----
+" Where to look for tags files
+set tags=./tags;,~/.vimtags
+" Sensible defaults
+let g:easytags_events = ['BufReadPost', 'BufWritePost']
+let g:easytags_async = 1
+let g:easytags_dynamic_files = 2
+let g:easytags_resolve_links = 1
+let g:easytags_suppress_ctags_warning = 1
+
+" ----- majutsushi/tagbar settings -----
+" Open/close tagbar with \b
+nmap <silent> <leader>b :TagbarToggle<CR>
+" Uncomment to open tagbar automatically whenever possible
+"autocmd BufEnter * nested :call tagbar#autoopen(0)
+
+
+" ----- airblade/vim-gitgutter settings -----
+" Required after having changed the colorscheme
+hi clear SignColumn
+" In vim-airline, only display "hunks" if the diff is non-zero
+let g:airline#extensions#hunks#non_zero_only = 1
+
+
+" ----- Raimondi/delimitMate settings -----
+let delimitMate_expand_cr = 1
+augroup mydelimitMate
+  au!
+  au FileType markdown let b:delimitMate_nesting_quotes = ["`"]
+  au FileType tex let b:delimitMate_quotes = ""
+  au FileType tex let b:delimitMate_matchpairs = "(:),[:],{:},`:'"
+  au FileType python let b:delimitMate_nesting_quotes = ['"', "'"]
+augroup END
+
+" ----- Enhanced cpp ---------
+let g:cpp_class_scope_highlight = 1
+let g:cpp_experimental_template_highlight = 1
+let python_highlight_all = 1
+" 80 character limit
+let &colorcolumn=join(range(81,999),",")
+highlight ColorColumn ctermbg=235 guibg=#2c2d27
+
+" ----- JSHint on save for js files ---
+"autocmd BufWritePost *.js silent :JSHint
+" ----- Jinja template highlighting ---
+"autocmd BufNewFile,BufRead */templates/*.html set filetype=htmljinja
+autocmd CompleteDone * pclose
