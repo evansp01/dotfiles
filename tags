@@ -1,3 +1,0 @@
-!_TAG_FILE_SORTED	2	/0=unsorted, 1=sorted, 2=foldcase/
-run_backup	/Users/evanpalmer/git/dotfiles/dotfiles.sh	/^run_backup() {$/;"	f	language:Sh
-run_unpack	/Users/evanpalmer/git/dotfiles/dotfiles.sh	/^run_unpack() {$/;"	f	language:Sh
