@@ -1,6 +1,6 @@
 #!/bin/bash
 
-backup_dir="."
+backup_dir="$HOME/git/dotfiles"
 common_prefix="$backup_dir/common"
 osx_prefix="$backup_dir/osx"
 linux_prefix="$backup_dir/linux"
@@ -14,16 +14,15 @@ config_files=(
 
 osx_config_files=(
     .zshrc
-    .zsh_aliases
     .bashrc
-    .bash_aliases
+    .sh_aliases
 )
 
 linux_config_files=(
     .zshrc
-    .zsh_aliases
     .bashrc
-    .bash_aliases
+    .sh_aliases
+    .conkyrc
 )
 
 usage(){
@@ -31,7 +30,6 @@ usage(){
     echo "    backup - backup the curent config"
     echo "    unpack - restore backed up config"
 }
-
 
 determine_platform() {
     if [[ $(uname) == 'Linux' ]]; then
@@ -52,9 +50,6 @@ determine_platform() {
     fi
 }
 
-
-
-
 run_backup() {
     file_dir=$1; shift
     mkdir -p $file_dir
@@ -69,7 +64,6 @@ run_backup() {
         fi
         cp "$HOME/$file" "$file_dir/$save_name"
     done
-
 }
 
 run_unpack() {
@@ -85,15 +79,12 @@ run_unpack() {
         fi
         cp "$file_dir/$save_name" "$HOME/$file"
     done
-
 }
 
 if (( $# < 1 )); then
     usage
     exit
 fi
-
-
 
 case $1 in
     backup)

@@ -23,6 +23,6 @@ export EDITOR="vim"
 
 source $ZSH/oh-my-zsh.sh
 
-if [ -f ~/.zsh_aliases ]; then
-    . ~/.zsh_aliases
+if [ -f ~/.sh_aliases ]; then
+    . ~/.sh_aliases
 fi
