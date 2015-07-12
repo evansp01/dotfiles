@@ -97,7 +97,7 @@ set foldlevelstart=99
 set hlsearch
 set incsearch
 set number
-set breakindent
+"set breakindent
 set guifont=Menlo\ For\ Powerline
 set nobackup
 set noswapfile

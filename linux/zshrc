@@ -1,0 +1,28 @@
+# Path to your oh-my-zsh installation.
+export ZSH=/home/evan/.oh-my-zsh
+
+# set to random for a random theme
+ZSH_THEME="robbyrussell"
+
+# DISABLE_AUTO_UPDATE="true"
+# export UPDATE_ZSH_DAYS=13
+# ENABLE_CORRECTION="true"
+
+plugins=(
+    git autojump
+    colored-man command-not-found
+    vi-mode web-search
+    tmux zsh-syntax-highlighting
+)
+
+# User configuration
+
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
+export MANPATH="/usr/local/man:$MANPATH"
+export EDITOR="vim"
+
+source $ZSH/oh-my-zsh.sh
+
+if [ -f ~/.zsh_aliases ]; then
+    . ~/.zsh_aliases
+fi
