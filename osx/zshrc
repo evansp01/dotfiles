@@ -72,8 +72,8 @@ fi
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
 
-if [ -f ~/.zsh_aliases ]; then
-    . ~/.zsh_aliases
+if [ -f ~/.sh_aliases ]; then
+    . ~/.sh_aliases
 fi
 
 export PATH="/usr/local/Cellar/vim/7.4.712/bin:${PATH}"
