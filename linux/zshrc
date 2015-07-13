@@ -3,6 +3,7 @@ export ZSH=/home/evan/.oh-my-zsh
 
 # set to random for a random theme
 ZSH_THEME="robbyrussell"
+CASE_SENSITIVE="true"
 
 # DISABLE_AUTO_UPDATE="true"
 # export UPDATE_ZSH_DAYS=13
@@ -11,8 +12,8 @@ ZSH_THEME="robbyrussell"
 plugins=(
     git autojump
     colored-man command-not-found
-    vi-mode web-search
-    tmux zsh-syntax-highlighting
+    web-search tmux
+    zsh-syntax-highlighting
 )
 
 # User configuration
