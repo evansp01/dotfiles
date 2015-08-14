@@ -8,7 +8,7 @@ export ZSH=/Users/evanpalmer/.oh-my-zsh
 ZSH_THEME="robbyrussell"
 
 # Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
+CASE_SENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
@@ -78,7 +78,6 @@ fi
 
 export PATH="/usr/local/Cellar/vim/7.4.712/bin:${PATH}"
 export WORKON_HOME=$HOME/.virtualenvs
-source /usr/local/bin/virtualenvwrapper.sh
 
 
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -88,7 +87,7 @@ source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 #export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
 
-bindkey -v
+#bindkey -v
 bindkey "^?" backward-delete-char
 bindkey "^W" backward-kill-word
 bindkey "^U" backward-kill-line

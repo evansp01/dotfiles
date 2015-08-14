@@ -1,1 +1,2 @@
 alias chrome='/usr/bin/open -a "/Applications/Google Chrome.app"'
+alias t='$HOME/Dropbox/todo/todo.sh'

@@ -67,12 +67,13 @@ Plugin 'elzr/vim-json'
 Plugin 'pangloss/vim-javascript'
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'hail2u/vim-css3-syntax'
-Plugin 'maksimr/vim-jsbeautify'
-Plugin 'einars/js-beautify'
+Plugin 'Chiel92/vim-autoformat'
+Plugin 'burnettk/vim-angular'
 " Align CSV files at commas, align Markdown tables, and more
 Plugin 'godlygeek/tabular'
 " Automaticall insert the closing HTML tag
 Plugin 'HTML-AutoCloseTag'
+Plugin 'heavenshell/vim-pydocstring'
 
 
 call vundle#end()
@@ -105,8 +106,8 @@ syntax on
 
 " set , as mapleader
 let mapleader = ","
-inoremap jj <Esc>
-inoremap jk <Esc>
+inoremap jj <Esc>l
+inoremap jk <Esc>l
 nnoremap \ }
 nnoremap ; :
 "inoremap <Esc> <Nop>
@@ -119,13 +120,12 @@ set mouse=a
 
 " ----- Plugin-Specific Settings --------------------------------------
 
-"----- js-beautify settings -------------
 
-autocmd FileType javascript noremap <buffer> <leader>jf :call JsBeautify()<cr>
-" for html
-autocmd FileType html noremap <buffer> <leader>jf :call HtmlBeautify()<cr>
-" for css or scss
-autocmd FileType css noremap <buffer> <leader>jf :call CSSBeautify()<cr>
+"----- js-beautify settings -------------
+"
+
+noremap <leader>jf :Autoformat<CR>
+let g:autoformat_verbosemode=1
 
 "----- youcompleteme settings -----------
 
@@ -136,14 +136,15 @@ autocmd FileType css noremap <buffer> <leader>jf :call CSSBeautify()<cr>
 " ----- ctrlp settings -------------------
 
 " First set up patterns to ignore
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+set wildignore+=*/lib/*,*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 let g:ctrlp_map = '<C-p>'
 " Open CTRL+P to search MRU (most recently used), files and buffers
 let g:ctrlp_cmd = 'CtrlPMixed'
-let g:ctrlp_working_path_mode = ''
+let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 " Make CTRL+P only look for filenames by default
-let g:ctrlp_by_filename = '1'
+let g:ctrlp_max_files=0
+
 
 """"""  CTRL+P Mappings """"""
 " Make CTRL+B open buffers
@@ -211,6 +212,7 @@ let g:nerdtree_tabs_open_on_console_startup = 0
 
 " ----- scrooloose/syntastic settings -----
 let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_html_checkers = ['jshint']
 let g:syntastic_error_symbol = '✘'
 let g:syntastic_style_error_symbol = '✗'
 let g:syntastic_warning_symbol = "▲"
@@ -273,3 +275,5 @@ highlight ColorColumn ctermbg=235 guibg=#2c2d27
 " ----- Jinja template highlighting ---
 "autocmd BufNewFile,BufRead */templates/*.html set filetype=htmljinja
 autocmd CompleteDone * pclose
+
+autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
