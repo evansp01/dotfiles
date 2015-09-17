@@ -3,7 +3,7 @@ export ZSH=$HOME/.oh-my-zsh
 export EDITOR="vim"
 
 # set to random for a random theme
-ZSH_THEME="robbyrussell"
+ZSH_THEME="random"
 CASE_SENSITIVE="true"
 
 # DISABLE_AUTO_UPDATE="true"
@@ -11,9 +11,9 @@ CASE_SENSITIVE="true"
 # ENABLE_CORRECTION="true"
 
 plugins=(
-    git autojump
+    vi-mode
+    git autojump tmux
     colored-man command-not-found
-    web-search tmux
     zsh-syntax-highlighting
 )
 
@@ -25,8 +25,8 @@ if [ -f ~/.sh_aliases ]; then
     source ~/.sh_aliases
 fi
 
-if [ -f $HOME/.zshrc.local ]; then
-    source .zshrc.local
+if [ -f $HOME/.local-zshrc.zsh ]; then
+    source .local-zshrc.zsh
 fi
 
 if [ -d $HOME/bin ]; then
