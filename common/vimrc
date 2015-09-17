@@ -278,5 +278,3 @@ highlight ColorColumn ctermbg=235 guibg=#2c2d27
 " ----- Jinja template highlighting ---
 "autocmd BufNewFile,BufRead */templates/*.html set filetype=htmljinja
 autocmd CompleteDone * pclose
-
-autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
