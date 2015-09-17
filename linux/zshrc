@@ -18,12 +18,28 @@ plugins=(
 
 # User configuration
 
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
+export PATH="$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
 export MANPATH="/usr/local/man:$MANPATH"
 export EDITOR="vim"
 
 source $ZSH/oh-my-zsh.sh
 
 if [ -f ~/.sh_aliases ]; then
-    . ~/.sh_aliases
+    source ~/.sh_aliases
+fi
+
+if [ -d $HOME/bin ]; then
+    export PATH="$PATH:$HOME/bin"
+fi
+
+if [ -d $HOME/.local/bin ]; then
+    export PATH="$PATH:$HOME/.local/bin"
+fi
+
+if [ -f /afs/club.cc.cmu.edu/contrib/etc/zshrc ]; then
+    source /afs/club.cc.cmu.edu/contrib/etc/bashrc
+fi
+
+if [ -d /afs/cs.cmu.edu/academic/class/15410-f15/bin ]; then
+    export PATH="$PATH:/afs/cs.cmu.edu/academic/class/15410-f15/bin"
 fi
