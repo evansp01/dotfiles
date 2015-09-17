@@ -108,7 +108,6 @@ syntax on
 let mapleader = ","
 inoremap jj <Esc>l
 inoremap jk <Esc>l
-nnoremap \ }
 nnoremap ; :
 "inoremap <Esc> <Nop>
 
