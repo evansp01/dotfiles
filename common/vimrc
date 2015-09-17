@@ -39,7 +39,6 @@ Plugin 'scrooloose/nerdcommenter'
 
 " ----- Syntax Plugins ------------------------------------------------
 Plugin 'scrooloose/syntastic'
-"Plugin 'Shutnik/jshint2.vim'
 
 " ----- Vim tags related plugins --------------------------------------
 Plugin 'xolox/vim-misc'
@@ -69,12 +68,12 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'hail2u/vim-css3-syntax'
 Plugin 'Chiel92/vim-autoformat'
-Plugin 'burnettk/vim-angular'
 " Align CSV files at commas, align Markdown tables, and more
 Plugin 'godlygeek/tabular'
 " Automaticall insert the closing HTML tag
 Plugin 'HTML-AutoCloseTag'
 Plugin 'heavenshell/vim-pydocstring'
+Plugin 'ConradIrwin/vim-bracketed-paste'
 
 
 call vundle#end()
@@ -120,6 +119,9 @@ noremap <leader>w :bn<CR>
 set mouse=a
 
 " ----- Plugin-Specific Settings --------------------------------------
+
+
+nmap <silent> <C-h> <Plug>(pydocstring)
 
 
 "----- js-beautify settings -------------
