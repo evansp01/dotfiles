@@ -77,7 +77,7 @@ run_unpack() {
         if (( verbose > 0 )); then
             echo "$file_dir/$save_name -> $HOME/$file"
         fi
-        cp "$file_dir/$save_name" "$HOME/$file"
+        cp -i "$file_dir/$save_name" "$HOME/$file"
     done
 }
 
