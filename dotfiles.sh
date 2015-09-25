@@ -50,6 +50,34 @@ determine_platform() {
     fi
 }
 
+confirm_move_file() {
+    from=$1; shift
+    to=$1; shift
+    from_hash=$(md5sum $from | cut -d' ' -f 1)
+    to_hash=$(md5sum $to | cut -d' ' -f 1)
+    if [ "$from_hash" = "$to_hash" ]; then
+        if (( verbose > 0 )); then
+            echo "No updates to $to (md5 same)"
+        fi
+        return
+    fi
+    git diff $to $from
+    read -r -p "Do you want to update $to to $from? [y/N] " response
+    case $response in
+        [yY][eE][sS]|[yY])
+            if (( verbose > 0 )); then
+                echo "$from -> $to"
+            fi
+            cp $from $to
+            ;;
+        *)
+            if (( verbose > 0 )); then
+                echo "Skipping $from"
+            fi
+            ;;
+    esac
+}
+
 run_backup() {
     file_dir=$1; shift
     mkdir -p $file_dir
@@ -74,10 +102,7 @@ run_unpack() {
         if [ ! -f "$file_dir/$save_name" ]; then
             continue
         fi
-        if (( verbose > 0 )); then
-            echo "$file_dir/$save_name -> $HOME/$file"
-        fi
-        cp -i "$file_dir/$save_name" "$HOME/$file"
+        confirm_move_file "$file_dir/$save_name" "$HOME/$file" $verbose
     done
 }
 
