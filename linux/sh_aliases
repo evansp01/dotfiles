@@ -12,3 +12,4 @@ alias poweroff='sudo poweroff'
 alias open='xdg-open'
 alias afs-login="kinit esp@ANDREW.CMU.EDU && aklog andrew.cmu.edu"
 alias cmu-mosh="mosh --server mosh-server-kerberos"
+alias tmux="tmux -2"
