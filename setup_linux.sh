@@ -14,6 +14,7 @@ sudo apt-get install python-dev
 # install syntastic linters
 sudo apt-get install npm
 sudo pip3 install flake8
+sudo pip3 install autopep8
 sudo npm install -g jshint
 # install autojump
 sudo apt-get install autojump
