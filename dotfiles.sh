@@ -11,6 +11,7 @@ config_files=(
     .vimrc
     .tmux.conf
     .editorconfig
+    .gitconfig
 )
 
 osx_config_files=(

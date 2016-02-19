@@ -1,0 +1,7 @@
+[push]
+	default = simple
+[user]
+	name = Evan Palmer
+	email = evansp01@gmail.com
+[core]
+	editor = vim
