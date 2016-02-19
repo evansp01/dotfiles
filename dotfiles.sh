@@ -4,6 +4,7 @@ backup_dir="$HOME/git/dotfiles"
 common_prefix="$backup_dir/common"
 osx_prefix="$backup_dir/osx"
 linux_prefix="$backup_dir/linux"
+md5=""
 verbose=1
 
 config_files=(
@@ -38,12 +39,14 @@ determine_platform() {
         fi
         os_prefix=$linux_prefix
         os_config_files=(${linux_config_files[@]})
+        md5="md5sum"
     elif [[ $(uname) == 'Darwin' ]]; then
         if (( verbose > 0 )); then
             echo "Running on osx"
         fi
         os_prefix=$osx_prefix
         os_config_files=(${osx_config_files[@]})
+        md5="md5 -r"
     else
         echo "Could not determine platform"
         exit
@@ -53,8 +56,8 @@ determine_platform() {
 confirm_move_file() {
     from=$1; shift
     to=$1; shift
-    from_hash=$(md5sum $from | cut -d' ' -f 1)
-    to_hash=$(md5sum $to | cut -d' ' -f 1)
+    from_hash=$($md5 $from | cut -d' ' -f 1)
+    to_hash=$($md5 $to | cut -d' ' -f 1)
     if [ "$from_hash" = "$to_hash" ]; then
         if (( verbose > 0 )); then
             echo "No updates to $to (md5 same)"
