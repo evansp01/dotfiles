@@ -26,7 +26,8 @@ Plugin 'gmarik/Vundle.vim'
 
 " ----- Making Vim look good ------------------------------------------
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 "Plugin 'tomasr/molokai'
 
 " ----- Nerdtree Tabs And CtrlP ---------------------------------------
@@ -72,7 +73,6 @@ Plugin 'Chiel92/vim-autoformat'
 Plugin 'godlygeek/tabular'
 " Automaticall insert the closing HTML tag
 Plugin 'HTML-AutoCloseTag'
-"Plugin 'heavenshell/vim-pydocstring'
 Plugin 'ConradIrwin/vim-bracketed-paste'
 
 
@@ -116,12 +116,6 @@ noremap <leader>q :bp<CR>
 noremap <leader>w :bn<CR>
 
 set mouse=a
-
-" ----- Plugin-Specific Settings --------------------------------------
-
-
-nmap <silent> <C-h> <Plug>(pydocstring)
-
 
 "----- js-beautify settings -------------
 "
@@ -203,6 +197,7 @@ let g:airline_detect_paste = 1
 " Show airline for tabs too
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline_theme = "solarized"
 
 
 " ----- jistr/vim-nerdtree-tabs -----
@@ -273,8 +268,4 @@ let python_highlight_all = 1
 let &colorcolumn=join(range(81,999),",")
 highlight ColorColumn ctermbg=235 guibg=#2c2d27
 
-" ----- JSHint on save for js files ---
-"autocmd BufWritePost *.js silent :JSHint
-" ----- Jinja template highlighting ---
-"autocmd BufNewFile,BufRead */templates/*.html set filetype=htmljinja
 autocmd CompleteDone * pclose
